@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Phone, MapPin, Clock, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, Clock, Star, ArrowRight, Shield, Award, Heart, Sparkles } from 'lucide-react';
 import { services, testimonials, clinicInfo } from '../data/mock';
 
 const HomePage = () => {
@@ -19,149 +19,182 @@ const HomePage = () => {
       Star: require('lucide-react').Star
     };
     const IconComponent = icons[iconName];
-    return IconComponent ? <IconComponent className="w-8 h-8" /> : null;
+    return IconComponent ? <IconComponent className="w-6 h-6" /> : null;
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section - Premium & Professional */}
+      <section className="relative h-[700px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-white">
         <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-600/95 via-teal-700/90 to-slate-900/95"></div>
           <img 
             src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95" 
-            alt="Dental clinic hero" 
-            className="w-full h-full object-cover"
+            alt="Professional Dental Care" 
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-600/70"></div>
         </div>
         
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
-            Trusted Dental Care in Mulund West
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+          <Badge className="mb-6 bg-white/10 text-white border-white/20 backdrop-blur-md px-6 py-2 text-sm font-medium">
+            Trusted Dental Excellence Since 2010
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Healthy Smiles Start Here
+          <h1 className="text-6xl md:text-7xl font-bold mb-8 leading-tight tracking-tight">
+            Your Smile,<br />Our Expertise
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-50">
-            Experience compassionate, modern dental care with our expert team
+          <p className="text-xl md:text-2xl mb-12 text-teal-50 font-light max-w-3xl mx-auto leading-relaxed">
+            Experience world-class dental care with cutting-edge technology and compassionate professionals in Mulund West
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8"
+              className="bg-white text-teal-700 hover:bg-teal-50 text-lg px-10 py-7 font-semibold shadow-xl"
               onClick={() => navigate('/contact')}
             >
-              Book Appointment
+              Book Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white text-white hover:bg-white/10 text-lg px-8"
+              className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm text-lg px-10 py-7 font-semibold"
               onClick={() => window.location.href = `tel:${clinicInfo.phone}`}
             >
               <Phone className="mr-2 w-5 h-5" />
-              Call Now
+              {clinicInfo.phone}
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Quick Info Bar */}
-      <section className="bg-blue-50 py-6 border-b">
+      {/* Trust Indicators */}
+      <section className="py-8 bg-white border-b">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="flex items-center justify-center gap-3">
-              <MapPin className="w-5 h-5 text-blue-600" />
-              <span className="text-sm text-gray-700">Mulund West, Mumbai</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-4 text-center">
+              <MapPin className="w-6 h-6 text-teal-600 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-gray-900">Premium Location</p>
+                <p className="text-sm text-gray-600">Mulund West, Mumbai</p>
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-3">
-              <Clock className="w-5 h-5 text-blue-600" />
-              <span className="text-sm text-gray-700">Mon-Fri: 9 AM - 8 PM</span>
+            <div className="flex items-center justify-center gap-4 text-center">
+              <Clock className="w-6 h-6 text-teal-600 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-gray-900">Extended Hours</p>
+                <p className="text-sm text-gray-600">Mon-Fri: 9 AM - 8 PM</p>
+              </div>
             </div>
-            <div className="flex items-center justify-center gap-3">
-              <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-              <span className="text-sm text-gray-700">4.7★ Rated by 200+ Patients</span>
+            <div className="flex items-center justify-center gap-4 text-center">
+              <Star className="w-6 h-6 text-amber-500 fill-amber-500 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-gray-900">4.7★ Rating</p>
+                <p className="text-sm text-gray-600">200+ Happy Patients</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-white">
+      {/* Services Section - Premium Cards */}
+      <section className="py-24 bg-gradient-to-b from-white to-slate-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-blue-700">Our Services</Badge>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">Comprehensive Dental Care</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              From routine check-ups to advanced treatments, we offer complete dental solutions
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-teal-100 text-teal-800 border-0">Comprehensive Care</Badge>
+            <h2 className="text-5xl font-bold mb-6 text-gray-900">Our Dental Services</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              From preventive care to advanced treatments, we deliver exceptional results with precision and care
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {services.map((service) => (
               <Card 
                 key={service.id} 
-                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-blue-100"
+                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-slate-200 bg-white overflow-hidden"
               >
-                <CardHeader>
-                  <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4">
+                <CardHeader className="pb-4">
+                  <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     {getIconComponent(service.icon)}
                   </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
+                  <CardTitle className="text-2xl font-bold mb-3 text-gray-900">{service.title}</CardTitle>
+                  <CardDescription className="text-base text-gray-600 leading-relaxed">
+                    {service.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {service.benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-center gap-2 text-sm text-gray-600">
-                        <CheckCircle className="w-4 h-4 text-green-600" />
+                  <div className="space-y-2 pt-4 border-t border-slate-100">
+                    {service.benefits.slice(0, 2).map((benefit, index) => (
+                      <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
                         {benefit}
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Button 
-              variant="outline" 
               size="lg"
               onClick={() => navigate('/services')}
-              className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              className="bg-teal-600 hover:bg-teal-700 text-white px-10 py-6 text-lg font-semibold shadow-lg"
             >
-              View All Services
+              Explore All Services
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-blue-50">
+      {/* Why Choose Us */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-600 text-white">Why Choose Us</Badge>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">Excellence in Dental Care</h2>
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-slate-100 text-slate-800 border-0">Why Neem Dental Care</Badge>
+            <h2 className="text-5xl font-bold mb-6 text-gray-900">Excellence in Every Detail</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Combining advanced technology with personalized, compassionate care
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
             {[
-              { icon: require('lucide-react').Award, title: "Expert Dentists", desc: "15+ years of combined experience" },
-              { icon: require('lucide-react').Zap, title: "Advanced Technology", desc: "State-of-the-art equipment & laser dentistry" },
-              { icon: require('lucide-react').Heart, title: "Patient-Centric", desc: "Compassionate care tailored to you" },
-              { icon: require('lucide-react').ShieldCheck, title: "Safety First", desc: "Highest standards of hygiene & sterilization" }
+              { 
+                icon: Award, 
+                title: "Expert Specialists", 
+                desc: "MDS & BDS qualified dentists with 15+ years experience",
+                color: "from-teal-500 to-teal-600"
+              },
+              { 
+                icon: Sparkles, 
+                title: "Advanced Technology", 
+                desc: "Latest laser systems and digital imaging for precision care",
+                color: "from-emerald-500 to-emerald-600"
+              },
+              { 
+                icon: Heart, 
+                title: "Patient-Centered", 
+                desc: "Personalized treatment plans designed for your unique needs",
+                color: "from-cyan-500 to-cyan-600"
+              },
+              { 
+                icon: Shield, 
+                title: "Safety First", 
+                desc: "Hospital-grade sterilization and infection control protocols",
+                color: "from-teal-600 to-teal-700"
+              }
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <div key={index} className="text-center">
-                  <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <div key={index} className="text-center group">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl`}>
                     <IconComponent className="w-10 h-10" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-900">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               );
             })}
@@ -169,42 +202,42 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      {/* Testimonials */}
+      <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-blue-700">Patient Reviews</Badge>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">What Our Patients Say</h2>
-            <p className="text-lg text-gray-600">Real experiences from real patients</p>
+          <div className="text-center mb-20">
+            <Badge className="mb-6 bg-teal-100 text-teal-800 border-0">Patient Stories</Badge>
+            <h2 className="text-5xl font-bold mb-6 text-gray-900">Trusted by Families</h2>
+            <p className="text-xl text-gray-600">Real experiences from our valued patients</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {testimonials.slice(0, 3).map((testimonial) => (
-              <Card key={testimonial.id} className="border-blue-100">
+              <Card key={testimonial.id} className="border-slate-200 bg-white hover:shadow-xl transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                    <div className="flex gap-1">
+                  <div className="flex items-center justify-between mb-4">
+                    <CardTitle className="text-lg font-semibold text-gray-900">{testimonial.name}</CardTitle>
+                    <div className="flex gap-0.5">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                        <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
                       ))}
                     </div>
                   </div>
-                  <CardDescription className="text-sm text-gray-500">{testimonial.date}</CardDescription>
+                  <CardDescription className="text-xs text-gray-500">{testimonial.date}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 italic">&ldquo;{testimonial.text}&rdquo;</p>
+                  <p className="text-gray-700 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Button 
-              variant="outline" 
+              variant="outline"
               size="lg"
               onClick={() => navigate('/testimonials')}
-              className="border-blue-600 text-blue-600 hover:bg-blue-50"
+              className="border-2 border-teal-600 text-teal-700 hover:bg-teal-50 px-10 py-6 text-lg font-semibold"
             >
               Read More Reviews
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -214,19 +247,20 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Smile?</h2>
-          <p className="text-xl mb-8 text-blue-50 max-w-2xl mx-auto">
-            Schedule your appointment today and experience the difference of quality dental care
+      <section className="py-24 bg-gradient-to-br from-teal-600 to-teal-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAgNGgtMnYyaDJ2LTJ6bS0yIDBoLTJ2Mmgydi0yem0tMiAwdi0ySDMwdjJoMnptLTItMmgtMnYyaDJ2LTJ6bTAgMHYtMmgtMnYyaDJ6bTItMnYtMmgtMnYyaDJ6bTAtMmgydi0yaC0ydjJ6bTItMmgydi0yaC0ydjJ6bS0yLTJoLTJ2Mmgydi0yem0wIDBodjJoMnYtMmgtMnptMi0yaC0ydjJoMnYtMnptMCAwaC0ydjJoMnYtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-5xl font-bold mb-6">Ready for a Healthier Smile?</h2>
+          <p className="text-xl mb-12 text-teal-50 max-w-2xl mx-auto leading-relaxed">
+            Book your consultation today and take the first step towards optimal dental health
           </p>
           <Button 
             size="lg" 
-            className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8"
+            className="bg-white text-teal-700 hover:bg-teal-50 text-xl px-12 py-7 font-bold shadow-2xl"
             onClick={() => navigate('/contact')}
           >
-            Book Your Appointment
-            <ArrowRight className="ml-2 w-5 h-5" />
+            Schedule Your Visit
+            <ArrowRight className="ml-3 w-6 h-6" />
           </Button>
         </div>
       </section>
