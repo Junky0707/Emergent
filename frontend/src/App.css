@@ -43,12 +43,12 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0D9488;
+  background: #1E40AF;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0F766E;
+  background: #1E3A8A;
 }
 
 /* Remove focus rings for mouse users, keep for keyboard users */
@@ -57,6 +57,6 @@ img {
 }
 
 :focus-visible {
-  outline: 2px solid #0D9488;
+  outline: 2px solid #1E40AF;
   outline-offset: 2px;
 }
