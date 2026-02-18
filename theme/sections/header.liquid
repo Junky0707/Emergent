@@ -1,0 +1,78 @@
+<header class="header" style="border-bottom: 1px solid {{ settings.color_background_subtle }}; position: sticky; top: 0; background: {{ settings.color_background }}; z-index: 100;">
+  <div class="page-width" style="display: flex; align-items: center; justify-content: space-between; height: 7rem;">
+    
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="header__logo" style="font-family: var(--font-heading); font-size: 2.4rem; letter-spacing: 0.05em;">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 200 | image_tag: class: 'header__logo-image', loading: 'eager' }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Navigation {%- endcomment -%}
+    <nav class="header__nav" style="display: none;">
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}" style="padding: 0.5rem 1rem; font-size: 1.4rem; color: var(--color-foreground-secondary);">
+          {{ link.title }}
+        </a>
+      {%- endfor -%}
+    </nav>
+
+    <style>
+      @media (min-width: 990px) {
+        .header__nav { display: flex !important; gap: 1rem; }
+        .header__mobile-toggle { display: none !important; }
+      }
+    </style>
+
+    {%- comment -%} Actions {%- endcomment -%}
+    <div class="header__actions" style="display: flex; align-items: center; gap: 1rem;">
+      <a href="{{ routes.search_url }}" aria-label="Search" style="padding: 0.5rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </a>
+      <a href="{{ routes.account_url }}" aria-label="Account" style="padding: 0.5rem; display: none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart ({{ cart.item_count }})" style="padding: 0.5rem; position: relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        {%- if cart.item_count > 0 -%}
+          <span style="position: absolute; top: -4px; right: -4px; background: var(--color-brand-primary); color: var(--color-background); font-size: 1rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            {{ cart.item_count }}
+          </span>
+        {%- endif -%}
+      </a>
+      <button class="header__mobile-toggle" aria-label="Menu" style="padding: 0.5rem; background: none; border: none; cursor: pointer;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
