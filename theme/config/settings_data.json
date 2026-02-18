@@ -1,0 +1,71 @@
+{
+  "current": {
+    "color_brand_primary": "#2C3E30",
+    "color_brand_secondary": "#E7E5E4",
+    "color_accent": "#A8522E",
+    "color_background": "#FAFAF9",
+    "color_background_subtle": "#F5F5F4",
+    "color_background_contrast": "#FFFFFF",
+    "color_foreground": "#1C1917",
+    "color_foreground_secondary": "#57534E",
+    "color_foreground_muted": "#A8A29E",
+    "color_success": "#3F6212",
+    "color_warning": "#854D0E",
+    "color_error": "#991B1B",
+    "type_body_size": 16,
+    "type_heading_scale": 100,
+    "page_width": 1400,
+    "spacing_section": 80,
+    "border_radius": 0,
+    "product_card_show_secondary_image": true,
+    "product_card_show_vendor": false,
+    "product_card_show_rating": true,
+    "product_card_enable_quick_add": true,
+    "product_card_image_ratio": "portrait",
+    "cart_type": "drawer",
+    "cart_show_shipping_bar": true,
+    "cart_free_shipping_threshold": 75,
+    "cart_enable_upsell": true,
+    "product_sticky_atc": true,
+    "product_show_subscription": true,
+    "product_subscription_discount": 15,
+    "product_show_inventory": true,
+    "product_low_stock_threshold": 10,
+    "enable_structured_data": true
+  },
+  "presets": {
+    "Clean Clinical": {
+      "color_brand_primary": "#3B5544",
+      "color_brand_secondary": "#E5E7EB",
+      "color_accent": "#059669",
+      "color_background": "#FAFAFA",
+      "color_background_subtle": "#F4F4F5",
+      "color_background_contrast": "#FFFFFF",
+      "color_foreground": "#18181B",
+      "color_foreground_secondary": "#52525B",
+      "border_radius": 4
+    },
+    "Warm Botanical": {
+      "color_brand_primary": "#854D0E",
+      "color_brand_secondary": "#FEF3C7",
+      "color_accent": "#B45309",
+      "color_background": "#FFFBEB",
+      "color_background_subtle": "#FEF3C7",
+      "color_background_contrast": "#FFFFFF",
+      "color_foreground": "#422006",
+      "color_foreground_secondary": "#78350F",
+      "border_radius": 8
+    },
+    "Modern Luxury": {
+      "color_brand_primary": "#D4AF37",
+      "color_brand_secondary": "#3D3835",
+      "color_accent": "#F5D066",
+      "color_background": "#1C1917",
+      "color_background_subtle": "#292524",
+      "color_background_contrast": "#3D3835",
+      "color_foreground": "#FAFAF9",
+      "color_foreground_secondary": "#D6D3D1",
+      "border_radius": 0
+    }
+  }
+}
