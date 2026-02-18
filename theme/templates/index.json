@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Elevate Your <em>Daily Ritual</em>",
+        "subheading": "Science-Backed Wellness",
+        "text": "Premium supplements and skincare formulated with clinically-proven ingredients. Experience wellness that works, backed by science.",
+        "button_label": "Shop Collection",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Curated for <em>You</em>",
+        "collection": "all",
+        "products_to_show": 4
+      }
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Know What's <em>Inside</em>",
+        "text": "<p>Every ingredient in our formulations is carefully selected for its proven efficacy. We believe in complete transparency—because you deserve to know exactly what you're putting in and on your body.</p>"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Get 15% Off Your First Order",
+        "text": "Join our community for exclusive offers, wellness tips, and early access to new products."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured-collection",
+    "rich-text",
+    "newsletter"
+  ]
+}
