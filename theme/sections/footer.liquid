@@ -1,0 +1,53 @@
+<footer class="footer" style="background: {{ settings.color_foreground }}; color: {{ settings.color_background }}; padding: 6rem 0 3rem;">
+  <div class="page-width">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; margin-bottom: 4rem;">
+      
+      {%- comment -%} Brand {%- endcomment -%}
+      <div>
+        <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); font-size: 2rem; letter-spacing: 0.05em; color: inherit; display: block; margin-bottom: 1.5rem;">
+          {{ shop.name }}
+        </a>
+        <p style="font-size: 1.4rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+          Premium wellness products backed by science. Elevating your daily rituals.
+        </p>
+      </div>
+
+      {%- comment -%} Quick Links {%- endcomment -%}
+      <div>
+        <h4 style="font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; color: rgba(255,255,255,0.5);">Shop</h4>
+        <nav style="display: flex; flex-direction: column; gap: 1rem;">
+          <a href="{{ routes.all_products_collection_url }}" style="font-size: 1.4rem; color: rgba(255,255,255,0.7);">All Products</a>
+          <a href="{{ routes.collections_url }}" style="font-size: 1.4rem; color: rgba(255,255,255,0.7);">Collections</a>
+        </nav>
+      </div>
+
+      {%- comment -%} Support {%- endcomment -%}
+      <div>
+        <h4 style="font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; color: rgba(255,255,255,0.5);">Support</h4>
+        <nav style="display: flex; flex-direction: column; gap: 1rem;">
+          <a href="/pages/contact" style="font-size: 1.4rem; color: rgba(255,255,255,0.7);">Contact Us</a>
+          <a href="/pages/shipping" style="font-size: 1.4rem; color: rgba(255,255,255,0.7);">Shipping</a>
+          <a href="/pages/returns" style="font-size: 1.4rem; color: rgba(255,255,255,0.7);">Returns</a>
+        </nav>
+      </div>
+
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <p style="font-size: 1.2rem; color: rgba(255,255,255,0.5); margin: 0;">
+        © {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+      </p>
+      <div style="display: flex; gap: 1rem;">
+        <a href="/policies/privacy-policy" style="font-size: 1.2rem; color: rgba(255,255,255,0.5);">Privacy</a>
+        <a href="/policies/terms-of-service" style="font-size: 1.2rem; color: rgba(255,255,255,0.5);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}
