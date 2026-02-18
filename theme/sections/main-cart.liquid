@@ -1,0 +1,97 @@
+<section class="main-cart" style="padding: 4rem 0;">
+  <div class="page-width" style="max-width: 100rem;">
+    <h1 style="font-size: clamp(2.8rem, 4vw, 4rem); margin-bottom: 3rem;">Your Cart</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+          <style>
+            @media (min-width: 990px) {
+              .cart-grid { grid-template-columns: 2fr 1fr !important; }
+            }
+          </style>
+          <div class="cart-grid" style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+            
+            {%- comment -%} Cart Items {%- endcomment -%}
+            <div>
+              {%- for item in cart.items -%}
+                <div style="display: flex; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid {{ settings.color_background_subtle }};">
+                  <a href="{{ item.url }}" style="width: 10rem; height: 10rem; flex-shrink: 0; background: {{ settings.color_background_subtle }};">
+                    {%- if item.image != blank -%}
+                      {{ item.image | image_url: width: 200 | image_tag: style: 'width: 100%; height: 100%; object-fit: cover;' }}
+                    {%- endif -%}
+                  </a>
+                  <div style="flex: 1;">
+                    <a href="{{ item.url }}" style="font-size: 1.6rem; font-weight: 500;">{{ item.product.title }}</a>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p style="font-size: 1.4rem; color: {{ settings.color_foreground_secondary }}; margin-top: 0.5rem;">
+                        {{ item.variant.title }}
+                      </p>
+                    {%- endunless -%}
+                    <p style="font-size: 1.6rem; margin-top: 1rem;">{{ item.price | money }}</p>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem;">
+                      <div style="display: flex; align-items: center; border: 1px solid {{ settings.color_background_subtle }}; border-radius: 4px;">
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); this.form.submit();" style="padding: 0.5rem 1rem; background: none; border: none; cursor: pointer;">−</button>
+                        <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}" style="width: 4rem; text-align: center; border: none; font-size: 1.4rem;">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); this.form.submit();" style="padding: 0.5rem 1rem; background: none; border: none; cursor: pointer;">+</button>
+                      </div>
+                      <a href="{{ item.url_to_remove }}" style="font-size: 1.3rem; color: {{ settings.color_foreground_secondary }}; text-decoration: underline;">
+                        Remove
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            {%- comment -%} Cart Summary {%- endcomment -%}
+            <div style="background: {{ settings.color_background_subtle }}; padding: 3rem; height: fit-content;">
+              <h2 style="font-size: 2rem; margin-bottom: 2rem;">Order Summary</h2>
+              
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="font-size: 1.4rem; color: {{ settings.color_foreground_secondary }};">Subtotal</span>
+                <span style="font-size: 1.6rem;">{{ cart.total_price | money }}</span>
+              </div>
+              
+              <p style="font-size: 1.3rem; color: {{ settings.color_foreground_secondary }}; margin-bottom: 2rem;">
+                Shipping and taxes calculated at checkout
+              </p>
+              
+              <button type="submit" name="checkout" class="button button--primary" style="width: 100%;">
+                Checkout
+              </button>
+              
+              <a href="{{ routes.all_products_collection_url }}" style="display: block; text-align: center; margin-top: 1.5rem; font-size: 1.4rem; color: {{ settings.color_foreground_secondary }}; text-decoration: underline;">
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div style="text-align: center; padding: 6rem 0;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="{{ settings.color_foreground_secondary }}" stroke-width="1" style="margin: 0 auto 2rem;">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <h2 style="font-size: 2.4rem; margin-bottom: 1rem;">Your cart is empty</h2>
+        <p style="font-size: 1.6rem; color: {{ settings.color_foreground_secondary }}; margin-bottom: 3rem;">
+          Discover our premium wellness products
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary">
+          Shop Now
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}
