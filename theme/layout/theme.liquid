@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+  <meta name="theme-color" content="{{ settings.color_brand_primary }}">
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+
+  <style>
+    :root {
+      --color-background: {{ settings.color_background }};
+      --color-background-subtle: {{ settings.color_background_subtle }};
+      --color-foreground: {{ settings.color_foreground }};
+      --color-foreground-secondary: {{ settings.color_foreground_secondary }};
+      --color-brand-primary: {{ settings.color_brand_primary }};
+      --color-accent: {{ settings.color_accent }};
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    
+    html { font-size: 62.5%; scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--color-foreground);
+      background-color: var(--color-background);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-width {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width: 750px) {
+      .page-width { padding: 0 3rem; }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    
+    img { max-width: 100%; height: auto; display: block; }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 1.2rem 2.4rem;
+      font-family: var(--font-body);
+      font-size: 1.4rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      border: none;
+    }
+
+    .button--primary {
+      background-color: var(--color-foreground);
+      color: var(--color-background);
+    }
+
+    .button--primary:hover {
+      background-color: var(--color-brand-primary);
+      transform: translateY(-2px);
+    }
+
+    .button--secondary {
+      background-color: transparent;
+      color: var(--color-foreground);
+      border: 1px solid var(--color-foreground);
+    }
+
+    .button--secondary:hover {
+      background-color: var(--color-background-subtle);
+    }
+  </style>
+
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+  <a class="skip-to-content visually-hidden" href="#MainContent">
+    {{ 'accessibility.skip_to_text' | t }}
+  </a>
+
+  {% sections 'header-group' %}
+
+  <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+</body>
+</html>
