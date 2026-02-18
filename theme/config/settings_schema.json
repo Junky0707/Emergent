@@ -1,0 +1,66 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "AURAVITA",
+    "theme_version": "1.0.0",
+    "theme_author": "Premium Theme Studio",
+    "theme_documentation_url": "https://auravita-theme.com/docs",
+    "theme_support_url": "https://auravita-theme.com/support"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_brand_primary",
+        "label": "Brand Primary",
+        "default": "#2C3E30"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color",
+        "default": "#A8522E"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#FAFAF9"
+      },
+      {
+        "type": "color",
+        "id": "color_background_subtle",
+        "label": "Background Subtle",
+        "default": "#F5F5F4"
+      },
+      {
+        "type": "color",
+        "id": "color_foreground",
+        "label": "Text Primary",
+        "default": "#1C1917"
+      },
+      {
+        "type": "color",
+        "id": "color_foreground_secondary",
+        "label": "Text Secondary",
+        "default": "#57534E"
+      }
+    ]
+  }
+]
