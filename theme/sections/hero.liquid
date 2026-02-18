@@ -1,0 +1,137 @@
+<section class="hero" style="min-height: 90vh; display: grid; grid-template-columns: 1fr; position: relative;">
+  <style>
+    @media (min-width: 990px) {
+      .hero { grid-template-columns: 1fr 1fr; }
+      .hero__content { order: 1; }
+      .hero__media { order: 2; }
+    }
+  </style>
+
+  {%- comment -%} Content {%- endcomment -%}
+  <div class="hero__content" style="display: flex; flex-direction: column; justify-content: center; padding: 6rem 2rem; background: {{ settings.color_background }};">
+    <div style="max-width: 50rem;">
+      {%- if section.settings.subheading != blank -%}
+        <span style="font-family: var(--font-body); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; color: {{ settings.color_brand_primary }}; margin-bottom: 1.5rem; display: block;">
+          {{ section.settings.subheading }}
+        </span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 style="font-size: clamp(3.5rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 2rem; color: {{ settings.color_foreground }};">
+          {{ section.settings.heading }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <p style="font-size: 1.8rem; line-height: 1.6; color: {{ settings.color_foreground_secondary }}; margin-bottom: 3rem;">
+          {{ section.settings.text }}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+          <a href="{{ section.settings.button_link }}" class="button button--primary">
+            {{ section.settings.button_label }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          {%- if section.settings.button_label_2 != blank -%}
+            <a href="{{ section.settings.button_link_2 }}" class="button button--secondary">
+              {{ section.settings.button_label_2 }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Trust Indicators {%- endcomment -%}
+      <div style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid {{ settings.color_background_subtle }}; display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <span style="width: 3.2rem; height: 3.2rem; border-radius: 50%; background: {{ settings.color_brand_primary }}; color: {{ settings.color_background }}; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600;">GMP</span>
+          <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">Certified</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <span style="width: 3.2rem; height: 3.2rem; border-radius: 50%; background: {{ settings.color_brand_primary }}; color: {{ settings.color_background }}; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600;">3P</span>
+          <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">Third-Party Tested</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <span style="width: 3.2rem; height: 3.2rem; border-radius: 50%; background: {{ settings.color_brand_primary }}; color: {{ settings.color_background }}; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600;">30</span>
+          <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">Day Guarantee</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Media {%- endcomment -%}
+  <div class="hero__media" style="position: relative; min-height: 40rem; background: {{ settings.color_background_subtle }};">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1200 | image_tag: 
+        style: 'width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;',
+        loading: 'eager',
+        fetchpriority: 'high'
+      }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg', style: 'width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;' }}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Science-Backed Wellness"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Elevate Your <em>Daily Ritual</em></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Premium supplements and skincare formulated with clinically-proven ingredients. Experience wellness that works, backed by science."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Second Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Second Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
