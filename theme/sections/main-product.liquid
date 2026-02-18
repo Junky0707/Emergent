@@ -1,0 +1,148 @@
+<section class="main-product" style="padding: 4rem 0;">
+  <div class="page-width">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+      <style>
+        @media (min-width: 990px) {
+          .main-product__grid { grid-template-columns: 1fr 1fr !important; gap: 6rem !important; }
+        }
+      </style>
+      <div class="main-product__grid" style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+        
+        {%- comment -%} Gallery {%- endcomment -%}
+        <div class="product__gallery">
+          <div style="aspect-ratio: 1; background: {{ settings.color_background_subtle }}; margin-bottom: 1rem;">
+            {%- if product.featured_image != blank -%}
+              {{ product.featured_image | image_url: width: 1000 | image_tag: 
+                style: 'width: 100%; height: 100%; object-fit: cover;',
+                loading: 'eager'
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          {%- if product.images.size > 1 -%}
+            <div style="display: flex; gap: 1rem; overflow-x: auto;">
+              {%- for image in product.images -%}
+                <button style="width: 8rem; height: 8rem; flex-shrink: 0; border: 2px solid {% if forloop.first %}{{ settings.color_foreground }}{% else %}transparent{% endif %}; padding: 0; background: none; cursor: pointer;">
+                  {{ image | image_url: width: 200 | image_tag: style: 'width: 100%; height: 100%; object-fit: cover;' }}
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Product Info {%- endcomment -%}
+        <div class="product__info">
+          <div style="margin-bottom: 2rem;">
+            <span style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.1em; color: {{ settings.color_accent }};">
+              {{ product.type | default: 'Wellness' }}
+            </span>
+            <h1 style="font-size: clamp(2.8rem, 4vw, 4rem); margin: 1rem 0;">{{ product.title }}</h1>
+            
+            {%- comment -%} Price {%- endcomment -%}
+            <div style="display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2rem;">
+              <span style="font-size: 2.4rem; font-weight: 500;">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <span style="font-size: 1.8rem; color: {{ settings.color_foreground_secondary }}; text-decoration: line-through;">
+                  {{ product.compare_at_price | money }}
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <p style="font-size: 1.6rem; line-height: 1.7; color: {{ settings.color_foreground_secondary }}; margin-bottom: 3rem;">
+            {{ product.description | strip_html | truncate: 200 }}
+          </p>
+
+          {%- comment -%} Add to Cart Form {%- endcomment -%}
+          {%- form 'product', product -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            
+            {%- comment -%} Variant Selector {%- endcomment -%}
+            {%- unless product.has_only_default_variant -%}
+              {%- for option in product.options_with_values -%}
+                <div style="margin-bottom: 2rem;">
+                  <label style="font-size: 1.4rem; font-weight: 500; display: block; margin-bottom: 1rem;">
+                    {{ option.name }}
+                  </label>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                    {%- for value in option.values -%}
+                      <button type="button" style="padding: 1rem 2rem; border: 1px solid {{ settings.color_foreground }}; border-radius: 9999px; background: {% if option.selected_value == value %}{{ settings.color_foreground }}{% else %}transparent{% endif %}; color: {% if option.selected_value == value %}{{ settings.color_background }}{% else %}{{ settings.color_foreground }}{% endif %}; font-size: 1.4rem; cursor: pointer;">
+                        {{ value }}
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- endunless -%}
+
+            {%- comment -%} Quantity & Add to Cart {%- endcomment -%}
+            <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+              <div style="display: flex; align-items: center; border: 1px solid {{ settings.color_background_subtle }}; border-radius: 9999px;">
+                <button type="button" onclick="this.nextElementSibling.stepDown()" style="padding: 1rem 1.5rem; background: none; border: none; cursor: pointer;">−</button>
+                <input type="number" name="quantity" value="1" min="1" style="width: 4rem; text-align: center; border: none; font-size: 1.6rem;">
+                <button type="button" onclick="this.previousElementSibling.stepUp()" style="padding: 1rem 1.5rem; background: none; border: none; cursor: pointer;">+</button>
+              </div>
+              <button type="submit" class="button button--primary" style="flex: 1;" {% unless product.available %}disabled{% endunless %}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                {%- if product.available -%}
+                  Add to Cart
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </button>
+            </div>
+          {%- endform -%}
+
+          {%- comment -%} Trust Badges {%- endcomment -%}
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 2rem 0; border-top: 1px solid {{ settings.color_background_subtle }}; border-bottom: 1px solid {{ settings.color_background_subtle }};">
+            <div style="text-align: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{ settings.color_brand_primary }}" stroke-width="1.5" style="margin: 0 auto 0.5rem;">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+              <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">Free Shipping $75+</span>
+            </div>
+            <div style="text-align: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{ settings.color_brand_primary }}" stroke-width="1.5" style="margin: 0 auto 0.5rem;">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">30-Day Guarantee</span>
+            </div>
+            <div style="text-align: center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{ settings.color_brand_primary }}" stroke-width="1.5" style="margin: 0 auto 0.5rem;">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              <span style="font-size: 1.2rem; color: {{ settings.color_foreground_secondary }};">Easy Returns</span>
+            </div>
+          </div>
+
+          {%- comment -%} Full Description {%- endcomment -%}
+          {%- if product.description != blank -%}
+            <div style="margin-top: 3rem;">
+              <h3 style="font-size: 1.6rem; margin-bottom: 1.5rem;">Description</h3>
+              <div style="font-size: 1.5rem; line-height: 1.7; color: {{ settings.color_foreground_secondary }};">
+                {{ product.description }}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}
