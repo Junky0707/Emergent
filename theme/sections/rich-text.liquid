@@ -1,0 +1,67 @@
+<section class="rich-text" style="padding: 8rem 0; background: {{ settings.color_background_subtle }};">
+  <div class="page-width" style="max-width: 80rem; text-align: center;">
+    {%- if section.settings.subheading != blank -%}
+      <span style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; color: {{ settings.color_brand_primary }}; margin-bottom: 1.5rem; display: block;">
+        {{ section.settings.subheading }}
+      </span>
+    {%- endif -%}
+    
+    {%- if section.settings.heading != blank -%}
+      <h2 style="font-size: clamp(2.8rem, 4vw, 4rem); margin-bottom: 2rem;">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.text != blank -%}
+      <div style="font-size: 1.8rem; line-height: 1.7; color: {{ settings.color_foreground_secondary }};">
+        {{ section.settings.text }}
+      </div>
+    {%- endif -%}
+    
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="button button--primary" style="margin-top: 3rem;">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Transparency"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Know What's <em>Inside</em></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Every ingredient in our formulations is carefully selected for its proven efficacy.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text"
+    }
+  ]
+}
+{% endschema %}
